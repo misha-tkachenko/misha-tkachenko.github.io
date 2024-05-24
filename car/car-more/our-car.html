@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best-auto</title>
+<link rel="shortcut icon" href="img/group-1.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="home"><a href="../index.html">На головну</a></div>
+    <h1>Автомобілі</h1>
+    <div id="container" v-cloak>
+        <div class="search-wrap">
+            <label for="search-inp">Знайти за назвою:</label>
+            <input type="text" v-model="search" v-on:keypress.enter="myFilter" id="search-inp">
+        </div>
+        <div class="content">
+            <div class="menu">
+                <ul class="menu-list">
+                    <li v-for="(item, index) in nameArr" v-on:click="showNotebook(index)"
+                        v-bind:class="{active: currentIndex ==  index}" >
+                        {{item}}
+                    </li>
+                </ul>
+            </div>
+            <div class="card-wrap">
+                <div class="card" v-for="(item, index) in chooseNotebooks"
+                     >
+                    
+                    <div class="car-img">
+                        <img v-bind:src="item.image" alt="">
+                    </div>
+                    <div class="card-name card-item">
+                        <b>Марка: </b> {{item.name}}
+                    </div>
+                    <div class="card-model card-item">
+                        <b>Модель: </b> {{item.model}}
+                    </div>
+                    <div class="card-item procesor">
+                        <b>Пальне </b> {{item.fuel}}
+                    </div>
+                    <div class="card-item memory">
+                        <b>Рік випуску </b> {{item.year}}
+                    </div>
+                    <div class="card-item memory">
+                        <b>Швидкість </b> {{item.speed}}
+                    </div>
+                    <div class="card-item price">
+                        <b>Ціна </b>  {{item.price}} $
+                    </div>
+                </div>
+                <div class="no-info" v-if="chooseNotebooks.length == 0">
+                    <p>У нас ще нема інформації щодо моделей цієї марки</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
